@@ -8,8 +8,16 @@ export interface User {
 export interface Facture {
     id: number;
     No: string;
-    Fournisseur : string;
-    pdf: string;
+    statut : string;
     totalTTC: string;
-    date : string;
+    dateEmission : string;
+    dateEcheance : string;
+}
+
+export interface Payment {
+  id: number;
+  facture: Facture;
+  penalities : string;
+  ttc : string;
+  date : string;
 }
