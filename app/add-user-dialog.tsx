@@ -15,14 +15,14 @@ import { Input } from "@/components/ui/input"
 import { DialogFooter } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { Button } from '@/components/ui/button';
-import { DatePicker } from "@/components/ui/date-picker"
-export default function AddFactureDialog() {
+
+export default function AddUserDialog() {
   let [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
     <div className="fixed right-4">
-        <Button onClick={() => setIsOpen(true)} variant="outline">Add Facture</Button>
+        <Button onClick={() => setIsOpen(true)} variant="outline">Add User</Button>
     </div>
     <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50 sm:max-w-[425px]">
       {/* The backdrop, rendered as a fixed sibling to the panel container */}
@@ -32,38 +32,63 @@ export default function AddFactureDialog() {
       <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
         {/* The actual dialog panel  */}
         <DialogPanel className="max-w-lg space-y-4 bg-white p-12 rounded-lg">
-          <DialogTitle className="font-bold">Add Facture</DialogTitle>
+          <DialogTitle className="font-bold">Add Admin</DialogTitle>
           <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="numero" className="text-right">
-              No
+            <Label htmlFor="nom" className="text-right">
+              Nom
             </Label>
             <Input
-              id="numero"
-              placeholder='Enter Facture numebr'
+              id="nom"
               className="col-span-3"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="ttc" className="text-right">
-              TTC
+            <Label htmlFor="prenom" className="text-right">
+              Prenom
             </Label>
             <Input
-              id="ttc"
-              type={"number"}
-              step={0.1}
-              placeholder="Enter Facture's TotalTTC"
-              defaultValue="@peduarte"
+              id="prenom"
               className="col-span-3"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="numero" className="text-right">
-              Date emission
+            <Label htmlFor="role" className="text-right">
+              Role
             </Label>
-            <DatePicker />
+            <Select>
+                <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Select a Role" />
+                </SelectTrigger>
+                <SelectContent className="bg-white w-[180px]">
+                    <SelectGroup>
+                        <SelectLabel>Roles</SelectLabel>
+                        <SelectItem value="FI">Financier</SelectItem>
+                        <SelectItem value="CO">Comptable</SelectItem>
+                    </SelectGroup>
+                </SelectContent>
+            </Select>
           </div>
-
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="password-1" className="text-right">
+              Password
+            </Label>
+            <Input
+              id="password-1"
+              type='password'
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="password-2" className="text-right">
+              re-enter passowrd
+            </Label>
+            <Input
+              id="password-2"
+              type='password'
+              className="col-span-3"
+            />
+          </div>
         </div> 
         <DialogFooter>
           <Button type="submit" >Save changes</Button>

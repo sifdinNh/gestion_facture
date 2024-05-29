@@ -1,6 +1,9 @@
+"use client";
+
 import { UsersTable } from './user-table';
 import { users } from './constatns'
 import { Button } from '@/components/ui/button';
+import AddUserDialog  from './add-user-dialog';
 
 export default async function IndexPage({
   searchParams
@@ -14,9 +17,7 @@ export default async function IndexPage({
       <div className="flex items-center mb-8">
         <h1 className="font-semibold text-lg md:text-2xl">Users</h1>
       </div>
-      <div className="fixed right-4">
-        <Button variant="outline">Add User</Button>
-      </div>
+      <AddUserDialog />
       <UsersTable users={users} offset={offset} />
     </main>
   );

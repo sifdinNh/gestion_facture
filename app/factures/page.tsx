@@ -1,6 +1,8 @@
+"use client";
+
 import { FacturesTable } from './facture-table';
 import { factures } from '../constatns'
-import { AddFactureDialog } from './add-facture-dialog'
+import AddFactureDialog  from './add-facture-dialog'
 
 export default function IndexPage({
   searchParams
