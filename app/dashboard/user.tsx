@@ -1,15 +1,12 @@
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
+import Link from 'next/link';
 
 export async function User() {
   const user = null;
 
   if (!user) {
     return (
-      <form
-      >
-        <Button variant="outline">Sign In</Button>
-      </form>
+      <Link href={'/auth/sign-in'}><Button variant="outline">Sign In</Button></Link>
     );
   }
 }

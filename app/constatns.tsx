@@ -4,14 +4,16 @@ export const users : User[] = [
     {
         "id" : 1,
         "email" : "samir@main.com",
-        "name" : "samir",
+        "first_name" : "samir",
+        "last_name" : "samir",
         "role" : "financier"
     },
     {
         "id" : 2,
-        "email" : "abir@main.com",
-        "name" : "abir",
-        "role" : "comptable"
+        "email" : "samir@main.com",
+        "first_name" : "samir",
+        "last_name" : "samir",
+        "role" : "financier"
     },
 ]
 

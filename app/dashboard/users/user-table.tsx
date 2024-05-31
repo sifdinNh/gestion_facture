@@ -10,7 +10,7 @@ import {
   Table
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import User from './types';
+import { User } from '../../types';
 import { useRouter } from 'next/navigation';
 
 export function UsersTable({
@@ -33,7 +33,8 @@ export function UsersTable({
           <TableHeader>
             <TableRow>
               <TableHead className="max-w-[150px]">id</TableHead>
-              <TableHead className="max-w-[150px]">Name</TableHead>
+              <TableHead className="max-w-[150px]">First name</TableHead>
+              <TableHead className="max-w-[150px]">Last name</TableHead>
               <TableHead className="hidden md:table-cell">Email</TableHead>
               <TableHead className="hidden md:table-cell">role</TableHead>
               <TableHead></TableHead>
@@ -77,7 +78,8 @@ function UserRow({ user }: { user: User }) {
   return (
     <TableRow>
       <TableCell className="font-medium">{user.id}</TableCell>
-      <TableCell className="font-medium">{user.name}</TableCell>
+      <TableCell className="font-medium">{user.first_name}</TableCell>
+      <TableCell className="font-medium">{user.last_name}</TableCell>
       <TableCell className="hidden md:table-cell">{user.email}</TableCell>
       <TableCell>< Badge text={user.role} /></TableCell>
       <TableCell>

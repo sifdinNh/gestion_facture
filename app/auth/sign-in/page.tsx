@@ -1,11 +1,8 @@
 import * as React from 'react'
-
-import { Title } from '@/components/title'
-import { Description } from '@/components/description'
-
 import { SignInForm } from './signin-form'
+import SignInLayout from './layout';
 
-export default function SignInPage() {
+const  SignInPage = () => {
   return (
     <div className="container flex min-h-screen w-screen flex-col items-center justify-center py-8">
       <div className="mx-auto flex w-full max-w-[320px] flex-col justify-center space-y-6">
@@ -19,4 +16,11 @@ export default function SignInPage() {
       </div>
     </div>
   )
-}
+};
+
+
+SignInPage.getLayout = (page) => {
+  return <SignInLayout>{page}</SignInLayout>;
+};
+
+export default SignInPage;
