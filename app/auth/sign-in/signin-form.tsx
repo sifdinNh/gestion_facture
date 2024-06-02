@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import * as React from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -6,6 +6,10 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm, useFormContext } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
+
+import { createClient } from '@/supabase/client'
 
 import { toast } from 'sonner'
 import { Input } from '@/components/ui/input'
@@ -112,7 +116,7 @@ const SubmitButton = () => {
   const searchParams = useSearchParams()
   const router = useRouter()
   const { handleSubmit, setError, getValues } = useFormContext()
-
+  const { setSession, setUser } = useAuth()
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false)
 
   const onSubmit = async () => {
@@ -121,12 +125,18 @@ const SubmitButton = () => {
 
       const next = (searchParams.get('next') as string) ?? '/dashboard'
       const formValues = getValues()
+      const supabase = createClient()
 
-      const supabase = {"auth":{"signInWithPassword":""}}
       const signed = await supabase.auth.signInWithPassword({
         email: formValues?.email,
         password: formValues?.password,
       })
+
+      setSession(signed?.data?.session)
+      setUser(signed?.data?.user)
+      console.log("signed")
+
+      console.log(signed)
       if (signed?.error) throw new Error(signed?.error?.message)
 
 

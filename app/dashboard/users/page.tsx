@@ -1,5 +1,3 @@
-"use client";
-
 import { UsersTable } from './user-table';
 import { users } from '../../constatns'
 import AddUserDialog  from './add-user-dialog';

@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Supabase CLI (WIP)
 
-## Getting Started
+[Supabase](https://supabase.io) is an open source Firebase alternative. We're building the features of Firebase using enterprise-grade open source tools.
 
-First, run the development server:
+This repository contains all the functionality for our CLI. It is still under heavy development.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- [x] Running Supabase locally
+- [x] Managing database migrations
+- [x] Pushing your local changes to production
+- [x] Create and Deploy Supabase Functions
+- [ ] Manage your Supabase Account
+- [ ] Manage your Supabase Projects
+- [ ] Generating types directly from your database schema
+- [ ] Generating API and validation schemas from your database
+
+## Getting started
+
+### Install the CLI
+
+#### macOS
+
+Available via [Homebrew](https://brew.sh). To install:
+
+```sh
+brew install supabase/tap/supabase
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To upgrade:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+brew upgrade supabase
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### Windows
 
-## Learn More
+Available via [Scoop](https://scoop.sh). To install:
 
-To learn more about Next.js, take a look at the following resources:
+```powershell
+scoop bucket add supabase https://github.com/supabase/scoop-bucket.git
+scoop install supabase
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To upgrade:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```powershell
+scoop update supabase
+```
 
-## Deploy on Vercel
+#### Linux
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Available via [Homebrew](https://brew.sh) and Linux packages.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+##### via Homebrew
+
+To install:
+
+```sh
+brew install supabase/tap/supabase
+```
+
+To upgrade:
+
+```sh
+brew upgrade supabase
+```
+
+##### via Linux packages
+
+Linux packages are provided in [Releases](https://github.com/supabase/cli/releases). To install, download the `.apk`/`.deb`/`.rpm` file depending on your package manager and run `sudo apk add --allow-untrusted <...>.apk`/`sudo dpkg -i <...>.deb`/`sudo rpm -i <...>.rpm` respectively.
+
+### Run the CLI
+
+```sh
+supabase help
+```
+
+## Docs
+
+Command & config reference can be found [here](https://supabase.com/docs/reference/cli/about).
+
+## Breaking changes
+
+The CLI is a WIP and we're still exploring the design, so expect a lot of breaking changes. We try to document migration steps in [Releases](https://github.com/supabase/cli/releases). Please file an issue if these steps don't work!
+
+## Developing
+
+To run from source:
+
+```sh
+# Go >= 1.18
+go run . help
+```
+
+---
+
+## Sponsors
+
+[![New Sponsor](https://user-images.githubusercontent.com/10214025/90518111-e74bbb00-e198-11ea-8f88-c9e3c1aa4b5b.png)](https://github.com/sponsors/supabase)

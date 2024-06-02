@@ -1,15 +1,25 @@
 import { NextResponse, type NextRequest } from 'next/server'
+import { updateSession } from '@/supabase/middleware'
+import { accessDenied } from '@/config/middleware'
 
+// Server Components only have read access to cookies.
+// This Middleware example can be used to refresh expired sessions before loading Server Component routes.
 export async function middleware(request: NextRequest) {
-  const url = request.nextUrl.clone();
-  const sign_in_url = "/auth/sign-in";
-  console.log(url)
-  if (url.pathname === sign_in_url) {
-    return NextResponse.next();
+  const { response, authenticated } = await updateSession(request)
+
+  const denied = accessDenied.filter((deny) => {
+    if (!request.nextUrl.pathname.startsWith(deny.from)) return
+    if (authenticated !== deny?.authenticated) return
+    return deny
+  })[0]
+
+  if (denied) {
+    return NextResponse.redirect(new URL(denied.to, request.url))
   }
-  return NextResponse.redirect(new URL(sign_in_url, request.url))
+
+  return response
 }
-// Optionally, don't invoke Middleware on some paths
+
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)','/auth/:path*',]
-};
+  matcher: ['/', '/auth/:path*', '/dashboard/:path*'],
+}

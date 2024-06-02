@@ -3,6 +3,9 @@ import { Analytics } from '@vercel/analytics/react';
 import { Logo, SettingsIcon, UsersIcon, VercelLogo } from '@/components/icons';
 import { User } from './user';
 import { NavItem } from './nav-item';
+import { authenticate } from '@/queries/server/auth'
+import { redirect } from 'next/navigation'
+
 
 export const metadata = {
   title: 'Next.js App Router + NextAuth + Tailwind CSS',
@@ -10,11 +13,14 @@ export const metadata = {
     'A user admin dashboard configured with Next.js, Postgres, NextAuth, Tailwind CSS, TypeScript, and Prettier.'
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: {
   children: React.ReactNode;
 }) {
+  const { user: session } = await authenticate()
+  if (!session) redirect('/auth/sign-in')
+
   return (
     <html lang="en" className="h-full bg-gray-50">
       <body>
