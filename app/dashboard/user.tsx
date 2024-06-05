@@ -18,7 +18,7 @@ export async function User() {
     <div className="flex items-center gap-4">
       <form
       >
-        <Button variant="outline">Sign Out</Button>
+        <Button variant="outline">Déconnexion </Button>
       </form>
       <img
         className="h-8 w-8 rounded-full"

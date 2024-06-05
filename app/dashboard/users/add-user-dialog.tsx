@@ -70,6 +70,17 @@ export default function AddUserDialog() {
             </Select>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="email" className="text-right">
+              Email
+            </Label>
+            <Input
+              id="email"
+              type='email'
+              className="col-span-3"
+            />
+          </div>
+        </div> 
+          <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="password-1" className="text-right">
               mot de pass
             </Label>
@@ -79,17 +90,7 @@ export default function AddUserDialog() {
               className="col-span-3"
             />
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="password-2" className="text-right">
-              mot de pass
-            </Label>
-            <Input
-              id="password-2"
-              type='password'
-              className="col-span-3"
-            />
-          </div>
-        </div> 
+         
         <DialogFooter>
           <Button type="submit" >Enregistrer</Button>
         </DialogFooter>

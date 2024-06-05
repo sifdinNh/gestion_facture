@@ -72,7 +72,7 @@ const EmailField = () => {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              placeholder="name@example.com"
+              placeholder="email"
               {...field}
             />
           </FormControl>
@@ -93,7 +93,7 @@ const PasswordField = () => {
       render={({ field }) => (
         <FormItem>
           <div className="flex items-center justify-between">
-            <FormLabel>Password</FormLabel>
+            <FormLabel>Mot de pass</FormLabel>
           </div>
           <FormControl>
             <Input
@@ -101,7 +101,7 @@ const PasswordField = () => {
               autoCapitalize="none"
               autoComplete="current-password"
               autoCorrect="off"
-              placeholder="password"
+              placeholder="Mot de pass"
               {...field}
             />
           </FormControl>
@@ -168,7 +168,7 @@ const SubmitButton = () => {
       disabled={isSubmitting}
       className="w-full"
     >
-      Sign In
+     Se connecter
     </Button>
   )
 }

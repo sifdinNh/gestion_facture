@@ -27,7 +27,7 @@ export function PaymentTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="max-w-[150px]">No</TableHead>
+              <TableHead className="max-w-[150px]">Num</TableHead>
               <TableHead className="max-w-[150px]">TTC</TableHead>
               <TableHead className="max-w-[150px]">date</TableHead>
               <TableHead className="max-w-[150px]">penalites</TableHead>
@@ -50,8 +50,8 @@ const Badge = ({ text }) => {
         <div  className={clsx(
             "text-sm font-bold text-center px-3 rounded-full w-max",
             {
-                "bg-red-400 text-black-800" : text == 'penality 1',
-                "bg-blue-200 text-blue-800" : text == "penality 2"
+                "bg-red-400 text-black-800" : text == 'pénalités',
+                "bg-blue-200 text-blue-800" : text == "Aucune"
             }
         )}>{text}</div>
     );
@@ -63,7 +63,7 @@ function PaymentRow({ payment }: { payment: Payment }) {
   return (
     <TableRow>
       <TableCell className="font-medium">{payment.number}</TableCell>
-      <TableCell className="font-medium">{payment.ttc}</TableCell>
+      <TableCell className="font-medium">{payment.ttc} DH</TableCell>
       <TableCell className="font-medium">{payment.date}</TableCell>
       <TableCell>< Badge text={payment.penalty} /></TableCell>
       <TableCell>

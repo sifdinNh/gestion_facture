@@ -55,9 +55,9 @@ const Badge = ({ text }) => {
         <div  className={clsx(
             "text-sm font-bold text-center px-3 rounded-full w-max",
             {
-                "bg-blue-200 text-blue-800" : text == 'A',
-                "bg-yellow-200 text-yellow-800" : text == 'B',
-                "bg-red-500 text-black-800" : text == "C"
+                "bg-blue-200 text-blue-800" : text == 'Phase 1',
+                "bg-yellow-200 text-yellow-800" : text == 'Phase 2',
+                "bg-red-500 text-black-800" : text =='Phase 3' ,
             }
         )}>{text}</div>
     );
@@ -81,7 +81,7 @@ function FactureRow({ facture }: { facture: Facture }) {
           variant="outline"
           disabled
         >
-          Supprimer
+          Archiver
         </Button>
       </TableCell>
     </TableRow>

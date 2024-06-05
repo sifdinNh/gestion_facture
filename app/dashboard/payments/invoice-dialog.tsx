@@ -11,7 +11,9 @@ export default function InvoiceDialog({ payment } : { payment : Payment}) {
 
   return (
     <>
-    <Button type={'button'} onClick={() => setIsOpen(true)} variant="outline">Display Invoice</Button>
+    <Button type={'button'} onClick={() => setIsOpen(true)} variant="outline">Afficher</Button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <Button type={'button'} onClick={() => setIsOpen(true)} variant="outline">Imprimer</Button>
     <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50 sm:max-w-[425px]">
       {/* The backdrop, rendered as a fixed sibling to the panel container */}
       <div className="fixed inset-0 bg-black/50" aria-hidden="true" />
