@@ -89,12 +89,12 @@ export function UsersIcon(props: React.SVGProps<SVGSVGElement>) {
     );
   }
   
-  export function Logo() {
+  export function Logo({width = 52, height = 52} : { width : number, height : number}) {
     return (
       <img
-        width="52"
-        height="52"
-        className="text-gray-100"
+        width={width}
+        height={height}
+        className="mx-auto"
         src={logo.src}
       />
 

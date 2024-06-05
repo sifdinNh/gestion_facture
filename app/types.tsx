@@ -15,6 +15,13 @@ export interface Facture {
     dateEcheance : string;
 }
 
+export interface Reciever {
+  id : number;
+  address : string;
+  zipcode : string;
+  country : string;
+}
+
 export interface Payment {
   id: number;
   number: string;
