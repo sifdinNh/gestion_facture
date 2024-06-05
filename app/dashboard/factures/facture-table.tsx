@@ -24,8 +24,8 @@ export function FacturesTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="max-w-[150px]">id</TableHead>
-              <TableHead className="max-w-[150px]">No</TableHead>
+            
+              <TableHead className="max-w-[150px]">Num</TableHead>
               <TableHead className="hidden md:table-cell">TTC</TableHead>
               <TableHead className="hidden md:table-cell">dateEmission</TableHead>
               <TableHead className="hidden md:table-cell">dateEcheance</TableHead>
@@ -44,7 +44,7 @@ export function FacturesTable({
         <Button
           className="mt-4 w-40"
           variant="secondary">
-          Next Page
+         Suivant
         </Button>   
     </>
   );
@@ -68,7 +68,7 @@ function FactureRow({ facture }: { facture: Facture }) {
 
   return (
     <TableRow>
-      <TableCell className="font-medium">{facture.id}</TableCell>
+     
       <TableCell className="font-medium">{facture.No}</TableCell>
       <TableCell className="font-medium">{facture.totalTTC} DH</TableCell>
       <TableCell className="font-medium">{facture.dateEmission}</TableCell>
@@ -81,7 +81,7 @@ function FactureRow({ facture }: { facture: Facture }) {
           variant="outline"
           disabled
         >
-          Delete
+          Supprimer
         </Button>
       </TableCell>
     </TableRow>

@@ -33,8 +33,8 @@ export function UsersTable({
           <TableHeader>
             <TableRow>
               <TableHead className="max-w-[150px]">id</TableHead>
-              <TableHead className="max-w-[150px]">First name</TableHead>
-              <TableHead className="max-w-[150px]">Last name</TableHead>
+              <TableHead className="max-w-[150px]">nom</TableHead>
+              <TableHead className="max-w-[150px]">prenom</TableHead>
               <TableHead className="hidden md:table-cell">Email</TableHead>
               <TableHead className="hidden md:table-cell">role</TableHead>
               <TableHead></TableHead>
@@ -53,7 +53,7 @@ export function UsersTable({
           variant="secondary"
           onClick={() => onClick()}
         >
-          Next Page
+        Suivant
         </Button>
       )}
     </>
@@ -89,7 +89,7 @@ function UserRow({ user }: { user: User }) {
           variant="outline"
           disabled
         >
-          Delete
+          Supprimer
         </Button>
       </TableCell>
     </TableRow>

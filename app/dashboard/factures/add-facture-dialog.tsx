@@ -22,7 +22,7 @@ export default function AddFactureDialog() {
   return (
     <>
     <div className="fixed right-4">
-        <Button onClick={() => setIsOpen(true)} variant="outline">Add Facture</Button>
+        <Button onClick={() => setIsOpen(true)} variant="outline">Ajouter</Button>
     </div>
     <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50 sm:max-w-[425px]">
       {/* The backdrop, rendered as a fixed sibling to the panel container */}
@@ -32,11 +32,11 @@ export default function AddFactureDialog() {
       <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
         {/* The actual dialog panel  */}
         <DialogPanel className="max-w-lg space-y-4 bg-white p-12 rounded-lg">
-          <DialogTitle className="font-bold">Add Facture</DialogTitle>
+          <DialogTitle className="font-bold">Facture</DialogTitle>
           <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="numero" className="text-right">
-              No
+              Num
             </Label>
             <Input
               id="numero"
@@ -63,10 +63,16 @@ export default function AddFactureDialog() {
             </Label>
             <DatePicker />
           </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="numero" className="text-right">
+            date d'échéance
+            </Label>
+            <DatePicker />
+          </div>
 
         </div> 
         <DialogFooter>
-          <Button type="submit" >Save changes</Button>
+          <Button type="submit" >Enregistrer</Button>
         </DialogFooter>
         </DialogPanel>
       </div>
