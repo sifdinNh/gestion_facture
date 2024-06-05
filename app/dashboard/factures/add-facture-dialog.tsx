@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react"
 import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import {
     Select,
@@ -10,6 +11,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { format, addDays } from "date-fns";
+
 import { useState } from 'react'
 import { Input } from "@/components/ui/input"
 import { DialogFooter } from "@/components/ui/dialog"
@@ -18,7 +21,12 @@ import { Button } from '@/components/ui/button';
 import { DatePicker } from "@/components/ui/date-picker"
 export default function AddFactureDialog() {
   let [isOpen, setIsOpen] = useState(false)
-
+  const [date, setDate] = React.useState<Date>()
+  const [secondDate, setSecondDate] = React.useState<Date>()
+  const handleDate = (date) => {
+    setDate(date)
+    setSecondDate(addDays(date, 60));
+  }
   return (
     <>
     <div className="fixed right-4">
@@ -61,13 +69,13 @@ export default function AddFactureDialog() {
             <Label htmlFor="numero" className="text-right">
               Date emission
             </Label>
-            <DatePicker />
+            <DatePicker date={date} setDate={handleDate}/>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="numero" className="text-right">
             date d'échéance
             </Label>
-            <DatePicker />
+            <DatePicker date={secondDate} setDate={setSecondDate} disabled={true} />
           </div>
 
         </div> 

@@ -13,7 +13,7 @@ export const users : User[] = [
         "email" : "samir@main.com",
         "first_name" : "samir",
         "last_name" : "samir",
-        "role" : "financier"
+        "role" : "comptable"
     },
 ]
 

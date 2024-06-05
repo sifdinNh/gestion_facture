@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Analytics } from '@vercel/analytics/react';
-import { Logo, SettingsIcon, UsersIcon, VercelLogo } from '@/components/icons';
+import { Logo, SettingsIcon, UsersIcon, PaymentIcon, InvoiceIcon } from '@/components/icons';
 import { User } from './user';
 import { NavItem } from './nav-item';
 import { authenticate } from '@/queries/server/auth'
@@ -43,11 +43,11 @@ export default async function RootLayout({
                     Users
                   </NavItem>
                   <NavItem href="/dashboard/factures">
-                    <SettingsIcon className="h-4 w-4" />
+                    <InvoiceIcon className="h-4 w-4" />
                     Factures
                   </NavItem>
                   <NavItem href="/dashboard/payments">
-                    <SettingsIcon className="h-4 w-4" />
+                    <PaymentIcon className="h-4 w-4" />
                     Payments
                   </NavItem>
 
