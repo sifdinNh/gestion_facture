@@ -17,8 +17,9 @@ export interface Facture {
 
 export interface Payment {
   id: number;
+  number: string;
   facture: Facture;
-  penalities : string;
+  penalty : string;
   ttc : string;
   date : string;
 }

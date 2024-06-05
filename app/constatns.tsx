@@ -1,4 +1,4 @@
-import { User, Facture } from "./types"
+import { User, Facture, Payment } from "./types"
 
 export const users : User[] = [
     {
@@ -43,6 +43,27 @@ export const factures : Facture[] = [
         "totalTTC" : "33.3",
         "dateEmission" : "07/10/2022", 
         "dateEcheance" : "07/12/2022",   
+
+    },
+]
+
+export const payments : Payment[] = [
+    {
+        "id" : 1,
+        "number" : "D230",
+        "facture" : factures[0],
+        "penalty" : "penality 1",
+        "ttc" : "33.23", 
+        "date" : "07/12/2022",   
+
+    },
+    {
+        "id" : 2,
+        "number" : "D231",
+        "facture" : factures[1],
+        "penalty" : "penality 2",
+        "ttc" : "44.22", 
+        "date" : "07/12/2022",   
 
     },
 ]

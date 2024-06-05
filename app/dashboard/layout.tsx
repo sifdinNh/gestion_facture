@@ -46,6 +46,10 @@ export default async function RootLayout({
                     <SettingsIcon className="h-4 w-4" />
                     Factures
                   </NavItem>
+                  <NavItem href="/dashboard/payments">
+                    <SettingsIcon className="h-4 w-4" />
+                    Payments
+                  </NavItem>
 
                 </nav>
               </div>
