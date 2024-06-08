@@ -93,7 +93,7 @@ const PasswordField = () => {
       render={({ field }) => (
         <FormItem>
           <div className="flex items-center justify-between">
-            <FormLabel>Mot de pass</FormLabel>
+            <FormLabel>Mot de passe</FormLabel>
           </div>
           <FormControl>
             <Input
@@ -101,7 +101,7 @@ const PasswordField = () => {
               autoCapitalize="none"
               autoComplete="current-password"
               autoCorrect="off"
-              placeholder="Mot de pass"
+              placeholder="Mot de passe"
               {...field}
             />
           </FormControl>

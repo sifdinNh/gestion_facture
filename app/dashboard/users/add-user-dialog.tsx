@@ -32,7 +32,7 @@ export default function AddUserDialog() {
       <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
         {/* The actual dialog panel  */}
         <DialogPanel className="max-w-lg space-y-4 bg-white p-12 rounded-lg">
-          <DialogTitle className="font-bold">Admin</DialogTitle>
+          <DialogTitle className="font-bold">gestionnaire</DialogTitle>
           <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="nom" className="text-right">

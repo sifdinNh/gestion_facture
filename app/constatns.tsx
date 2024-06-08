@@ -4,7 +4,7 @@ import { User, Facture, Payment } from "./types"
 export const users : User[] = [
     {
         "id" : 1,
-        "email" : "a,samir@imacid.com",
+        "email" : "a.samir@imacid.com",
         "first_name" : "amine",
         "last_name" : "samir",
         "role" : "financier"
