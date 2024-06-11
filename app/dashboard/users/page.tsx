@@ -15,7 +15,7 @@ export default async function IndexPage({
         <h1 className="font-semibold text-lg md:text-2xl">Users</h1>
       </div>
       <AddUserDialog />
-      <UsersTable users={users} offset={offset} />
+      <UsersTable offset={offset} />
     </main>
   );
 }

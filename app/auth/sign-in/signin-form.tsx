@@ -134,9 +134,6 @@ const SubmitButton = () => {
 
       setSession(signed?.data?.session)
       setUser(signed?.data?.user)
-      console.log("signed")
-
-      console.log(signed)
       if (signed?.error) throw new Error(signed?.error?.message)
 
 

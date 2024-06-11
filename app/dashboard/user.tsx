@@ -1,13 +1,10 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { authenticate } from '@/queries/server/auth'
-import Image from 'next/image';
-
+import { SignOutButton } from './signout'
 
 export async function User() {
   const { user: session } = await authenticate()
-  console.log(session)
-
   if (!session) {
     return (
       <Link href={'/auth/sign-in'}><Button variant="outline">Sign In</Button></Link>
@@ -18,7 +15,7 @@ export async function User() {
     <div className="flex items-center gap-4">
       <form
       >
-        <Button variant="outline">Déconnexion </Button>
+        <SignOutButton />
       </form>
       <img
         className="h-8 w-8 rounded-full"

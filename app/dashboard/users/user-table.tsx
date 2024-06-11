@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from 'react'
 import clsx from 'clsx';
 import {
   TableHead,
@@ -10,14 +11,15 @@ import {
   Table
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { User } from '../../types';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/use-auth';
+import { useUsersAPI } from '@/queries/client/users';
+import { User } from '@/types/database'
+
 
 export function UsersTable({
-  users,
   offset
 }: {
-  users: User[];
   offset: number | null;
 }) {
   const router = useRouter();
@@ -25,7 +27,12 @@ export function UsersTable({
   function onClick() {
     router.replace(`/?offset=${offset}`);
   }
+  const [page, setPage] = React.useState<number>(1)
+  const [perPage, setPerPage] = React.useState<number>(50)
 
+  const { user } = useAuth()
+  const { users } = useUsersAPI(user?.id ?? null, { page, perPage })
+  
   return (
     <>
       <form className="border shadow-sm rounded-lg">
@@ -41,8 +48,8 @@ export function UsersTable({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {users.map((user) => (
-              <UserRow key={user.id} user={user} />
+            {users.map((user : User) => (
+              <UserRow key={user?.id} user={user} />
             ))}
           </TableBody>
         </Table>

@@ -46,3 +46,20 @@ export async function  createClient() {
 
   return supabase
 }
+
+export async function createAdminClient() {
+  const supabase = createAuthClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false,
+      },
+    }
+  )
+
+  // Access auth admin api
+  const adminAuthClient = supabase.auth.admin
+  return adminAuthClient
+}

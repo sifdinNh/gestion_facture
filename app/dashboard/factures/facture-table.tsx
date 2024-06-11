@@ -17,7 +17,6 @@ export function FacturesTable({
 }: {
   factures: Facture[];
 }) {
-  console.log(factures)
   return (
     <>
       <form className="border shadow-sm rounded-lg">
