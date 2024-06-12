@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/use-auth';
-import { useUsersAPI } from '@/queries/client/users';
+import { useUsersAPI, useDeleteUser } from '@/queries/client/users';
 import { User } from '@/types/database'
 
 
@@ -23,6 +23,8 @@ export function UsersTable({
   offset: number | null;
 }) {
   const router = useRouter();
+  const { deleteUser, isLoading, error } = useDeleteUser();
+
 
   function onClick() {
     router.replace(`/?offset=${offset}`);
@@ -72,8 +74,8 @@ const Badge = ({ text }) => {
         <div  className={clsx(
             "text-sm font-bold text-center px-3 rounded-full w-max",
             {
-                "bg-indigo-200 text-indigo-800" : text == 'comptable',
-                "bg-blue-200 text-blue-800" : text == "financier"
+                "bg-indigo-200 text-indigo-800" : text == 'Comptable',
+                "bg-blue-200 text-blue-800" : text == "Financier"
             }
         )}>{text}</div>
     );
@@ -81,24 +83,36 @@ const Badge = ({ text }) => {
   
 function UserRow({ user }: { user: User }) {
   const userId = user.id;
+  const { deleteUser, isLoading, error } = useDeleteUser();
+
+  const handleDelete = async () => {
+    try {
+      await deleteUser(userId);
+      alert('User deleted successfully!');
+    } catch (err) {
+      console.error('Failed to delete user', err);
+    }
+  };
 
   return (
     <TableRow>
       <TableCell className="font-medium">{user.id}</TableCell>
-      <TableCell className="font-medium">{user.first_name}</TableCell>
-      <TableCell className="font-medium">{user.last_name}</TableCell>
+      <TableCell className="font-medium">{user.user_metadata?.first_name}</TableCell>
+      <TableCell className="font-medium">{user.user_metadata?.last_name}</TableCell>
       <TableCell className="hidden md:table-cell">{user.email}</TableCell>
-      <TableCell>< Badge text={user.role} /></TableCell>
+      <TableCell>< Badge text={user.user_metadata?.role} /></TableCell>
       <TableCell>
         <Button
           className="w-full"
           size="sm"
           variant="outline"
-          disabled
+          onClick={handleDelete}
+          disabled={isLoading}
         >
           Supprimer
         </Button>
       </TableCell>
+      {error && <TableCell><p className="text-red-500">{error.message}</p></TableCell>}
     </TableRow>
   );
 }

@@ -15,10 +15,13 @@ import { Input } from "@/components/ui/input"
 import { DialogFooter } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { Button } from '@/components/ui/button';
-import { createClient } from '@/supabase/client';
+import { useCreateUser } from '@/queries/client/users'
+
 
 export default function AddUserDialog() {
   const [isOpen, setIsOpen] = useState(false)
+  const { createUser, isLoading, error } = useCreateUser();
+
   const [formData, setFormData] = useState({
     nom: '',
     prenom: '',
@@ -26,7 +29,6 @@ export default function AddUserDialog() {
     email: '',
     password: ''
   });
-  const supabase = createClient();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -40,21 +42,19 @@ export default function AddUserDialog() {
     e.preventDefault();
     const { nom, prenom, role, email, password } = formData;
     try {
-      const { data: { user, session }, error } = await supabase.auth.signUp({
+      const { data: data, error } = await createUser({
         email,
         password,
-        options: {
-          data: {
-            first_name : nom,
-            last_name : prenom,
-            role,
-          },
+        user_metadata: {
+          first_name : nom,
+          last_name : prenom,
+          role,
         },
       });
       if (error) {
         console.error('Error creating user:', error);
       } else {
-        console.log('User created successfully:', user);
+        console.log('User created successfully:', data);
         setIsOpen(false); // Close the dialog on success
       }
     } catch (error) {
@@ -107,8 +107,8 @@ export default function AddUserDialog() {
                     <SelectContent className="bg-white w-[180px]">
                       <SelectGroup>
                         <SelectLabel>Roles</SelectLabel>
-                        <SelectItem value="FI">Financier</SelectItem>
-                        <SelectItem value="CO">Comptable</SelectItem>
+                        <SelectItem value="Financier">Financier</SelectItem>
+                        <SelectItem value="Comptable">Comptable</SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>

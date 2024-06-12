@@ -10,7 +10,7 @@ export async function User() {
       <Link href={'/auth/sign-in'}><Button variant="outline">Sign In</Button></Link>
     );
   }
-
+  console.log(session);
   return (
     <div className="flex items-center gap-4">
       <form
@@ -22,8 +22,9 @@ export async function User() {
         src={'https://static.vecteezy.com/system/resources/previews/011/459/666/original/people-avatar-icon-png.png'}
         height={32}
         width={32}
-        alt={`${session} avatar`}
+        alt={`${session.email} avatar`}
       />
+      {session.email}
     </div>
   )
 }

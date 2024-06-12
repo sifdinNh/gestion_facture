@@ -1,5 +1,4 @@
-import { User as AuthUser, AuthError, Pagination } from '@supabase/supabase-js'
-import { User } from '@/types/database'
+import { User , AuthError, Pagination } from '@supabase/supabase-js'
 
 
 export type UserAPI =

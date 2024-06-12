@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { createClient as createAuthClient } from '@supabase/supabase-js'
 import { Database } from '@/types/supabase'
+import { createFetch } from '@/lib/utils';
 
 /**
  * Setting up Server-Side Auth for Next.js
@@ -55,6 +56,11 @@ export async function createAdminClient() {
       auth: {
         autoRefreshToken: false,
         persistSession: false,
+      },
+      global: {
+        fetch: createFetch({
+          cache: 'no-store',
+        }),
       },
     }
   )

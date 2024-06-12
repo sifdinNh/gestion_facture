@@ -17,3 +17,4 @@ export {
 export { ApiError } from './error'
 export { fetcher } from './fetcher'
 export { getQueryString, setQueryString } from './url'
+export { createFetch } from './cache'
