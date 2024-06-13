@@ -5,7 +5,6 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const page = +((searchParams.get('page') as string) ?? '1')
   const perPage = +((searchParams.get('perPage') as string) ?? '50')
-
   const supabaseAdmin = await createAdminClient()
   const { data: list, error } = await supabaseAdmin.listUsers({ page, perPage })
   if (error) {

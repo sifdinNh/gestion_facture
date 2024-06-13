@@ -9,7 +9,103 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      invoices: {
+        Row: {
+          created_at: string
+          date_echeance: string
+          date_emission: string
+          id: number
+          is_archived: boolean
+          is_paid: boolean | null
+          no: string
+          receiver_address: string
+          receiver_country: string
+          receiver_name: string
+          receiver_zip_code: string
+          total_ttc: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date_echeance: string
+          date_emission: string
+          id?: number
+          is_archived?: boolean
+          is_paid?: boolean | null
+          no: string
+          receiver_address: string
+          receiver_country: string
+          receiver_name: string
+          receiver_zip_code: string
+          total_ttc: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date_echeance?: string
+          date_emission?: string
+          id?: number
+          is_archived?: boolean
+          is_paid?: boolean | null
+          no?: string
+          receiver_address?: string
+          receiver_country?: string
+          receiver_name?: string
+          receiver_zip_code?: string
+          total_ttc?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "invoices_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payments: {
+        Row: {
+          created_at: string
+          id: number
+          invoice_id: number
+          no: string
+          penalty: string
+          penalty_ttc: number
+          ttc: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          invoice_id: number
+          no: string
+          penalty: string
+          penalty_ttc: number
+          ttc: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          invoice_id?: number
+          no?: string
+          penalty?: string
+          penalty_ttc?: number
+          ttc?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_invoice_id_fkey"
+            columns: ["invoice_id"]
+            isOneToOne: false
+            referencedRelation: "invoices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

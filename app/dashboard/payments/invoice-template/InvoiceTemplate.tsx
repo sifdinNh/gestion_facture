@@ -8,7 +8,8 @@ import InvoiceLayout from "./InvoiceLayout";
 // Variables
 
 // Types
-import { Payment } from "../../../types";
+import  { Payment }  from '@/types/database';
+import { Database } from "lucide-react";
 
 const InvoiceTemplate = ({ data, } : { data : Payment }) => {
 
@@ -26,7 +27,7 @@ const InvoiceTemplate = ({ data, } : { data : Payment }) => {
                         Facture #
                     </h2>
                     <span className="mt-1 block text-gray-500">
-                        {data.number}
+                        {data.no}
                     </span>
                     <address className="mt-4 not-italic text-gray-800">
                         sidi moumen hay riad
@@ -45,12 +46,12 @@ const InvoiceTemplate = ({ data, } : { data : Payment }) => {
                     Fournisseur:
                     </h3>
                     <h3 className="text-lg font-semibold text-gray-800">
-                        ATB
+                        {data.invoice?.receiver_name}
                     </h3>
                     <address className="mt-2 not-italic text-gray-500">
-                        jorf lasfar, 24100
+                    {data.invoice?.receiver_address}
                         <br />
-                        Eljadia , Maroc
+                        {data.invoice?.receiver_country} ,{data.invoice?.receiver_zip_code}
                         <br />
                     </address>
                 </div>
@@ -62,7 +63,7 @@ const InvoiceTemplate = ({ data, } : { data : Payment }) => {
                             </dt>
                             <dd className="col-span-3 text-gray-500">
                                 {new Date(
-                                    "10/02/2024"
+                                    data.created_at
                                 ).toLocaleDateString("en-US")}
                             </dd>
                         </dl>
@@ -116,7 +117,7 @@ const InvoiceTemplate = ({ data, } : { data : Payment }) => {
                              pénalité:
                             </dt>
                             <dd className="col-span-2 text-gray-500">
-                                {data.pen}
+                                {data.penalty_ttc}
                                 DH
                             </dd>
                         </dl>
@@ -125,7 +126,7 @@ const InvoiceTemplate = ({ data, } : { data : Payment }) => {
                                 Total:
                             </dt>
                             <dd className="col-span-2 text-gray-500">
-                            {data.tt}
+                            {data.penalty_ttc + data.ttc}
                                 DH
                             </dd>
                         </dl>

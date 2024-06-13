@@ -3,7 +3,7 @@
 import {  Dialog, DialogPanel } from '@headlessui/react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button';
-import { Payment } from '../../types'
+import  { Payment }  from '@/types/database';
 import  InvoiceTemplate  from './invoice-template/InvoiceTemplate'
 
 export default function InvoiceDialog({ payment } : { payment : Payment}) {

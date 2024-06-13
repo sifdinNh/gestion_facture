@@ -14,7 +14,7 @@ export default function IndexPage({
         <h1 className="font-semibold text-lg md:text-2xl">Factures</h1>
       </div>
       <AddFactureDialog />
-      <FacturesTable factures={factures}/>
+      <FacturesTable/>
     </main>
   );
 }

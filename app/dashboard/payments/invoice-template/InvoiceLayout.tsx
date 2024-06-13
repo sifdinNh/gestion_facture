@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 // Types
-import { Payment } from "../../../types";
+import  { Payment }  from '@/types/database';
 
 type InvoiceLayoutProps = {
     data: Payment;

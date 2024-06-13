@@ -15,15 +15,13 @@ import { useInvoicesAPI } from '@/queries/client/invoices'
 import { Button } from '@/components/ui/button';
 import { Invoice } from '@/types/database'
 
-import { fetcher } from '@/lib/utils'
-import { InvoiceAPI } from '@/types/api'
-import { toast, Toaster } from 'sonner'
 
 
-export function FacturesTable() {
+
+export function ArchiveFacturesTable() {
   const [page, setPage] = React.useState<number>(1)
   const [perPage, setPerPage] = React.useState<number>(50)
-  const { invoices } = useInvoicesAPI({page: page,perPage: perPage,})
+  const { invoices } = useInvoicesAPI({page: page,perPage: perPage, isArchived : true})
 
   return (
     <>
@@ -31,8 +29,7 @@ export function FacturesTable() {
         <Table>
           <TableHeader>
             <TableRow>
-              
-              <TableHead className="max-w-[150px]">ID</TableHead>
+            
               <TableHead className="max-w-[150px]">Num</TableHead>
               <TableHead className="hidden md:table-cell">TTC</TableHead>
               <TableHead className="hidden md:table-cell">dateEmission</TableHead>
@@ -54,7 +51,6 @@ export function FacturesTable() {
           variant="secondary">
          Suivant
         </Button>   
-        <Toaster position="bottom-right" richColors   />
 
     </>
   );
@@ -75,27 +71,6 @@ const Badge = ({ text }) => {
 
   
 function FactureRow({ facture }: { facture: Invoice }) {
-  const [isArchiveClick, setIsArchiveClick] = React.useState(false)
-  const [isPayedClick, setIsPayedClick] = React.useState(false)
-
-  const handleArchiveInvoice = async (e) => {
-    setIsArchiveClick(true)
-    try {
-      const fetchUrl = `/api/v1/invoices?id=${facture.id}`
-      const { data: message, error } = await fetcher(fetchUrl, {
-        method: 'PATCH',
-        body: JSON.stringify({
-          data: { is_archived : true },
-        }),
-      })
-  
-      if (error) throw new Error(error?.message)
-      toast.success(message)
-    } catch (e: unknown) {
-      toast.error((e as Error)?.message)
-    }
-    setIsArchiveClick(false)
-  }
 
   const handleInvoiceStatus = (_date_echeance : string) => {
     const date_echeance = new Date(_date_echeance);
@@ -113,80 +88,15 @@ function FactureRow({ facture }: { facture: Invoice }) {
       return "Phase 3";
     }
   }
-
-  const onPayment = async (e) => {
-    e.preventDefault()
-    setIsPayedClick(true)
-    const increment_amount = 100;
-    const date_echeance = new Date(facture.date_echeance);
-    const currentDate = new Date();
-    const penalty = ''
-    let penalty_ttc = 0; 
-    if(currentDate > date_echeance) {
-      const differenceInMillis = currentDate.getTime() - date_echeance.getTime();
-    
-      // Convert milliseconds to days
-      const millisecondsInDay = 1000 * 60 * 60 * 24;
-      const differenceInDays = Math.round(differenceInMillis / millisecondsInDay) - 1
-
-      penalty_ttc =  differenceInDays == 0 ? 1 : increment_amount * differenceInDays
-    }
-
-    try {
-      const fetchUrl = `/api/v1/payments/list?invoiceId=${facture.id}`
-      const { data: message, error } = await fetcher(fetchUrl, {
-        method: 'POST',
-        body: JSON.stringify({
-          data: { 
-            no : facture.no,
-            penalty_ttc : penalty_ttc,
-            penalty : penalty,
-            ttc : facture.total_ttc,
-          },
-        }),
-      })
-  
-      if (error) throw new Error(error?.message)
-      toast.success(message)
-    } catch (e: unknown) {
-      toast.error((e as Error)?.message)
-    }
-
-    console.log(penalty_ttc)
-    setIsPayedClick(false)    
-  }
   
   return (
     <TableRow>
      
-      <TableCell className="font-medium">{facture.id}</TableCell>
       <TableCell className="font-medium">{facture.no}</TableCell>
       <TableCell className="font-medium">{facture.total_ttc} DH</TableCell>
       <TableCell className="font-medium">{facture.date_emission}</TableCell>
       <TableCell className="font-medium">{facture.date_echeance}</TableCell>
       <TableCell className="hidden md:table-cell"><Badge text={handleInvoiceStatus(facture.date_echeance)}/></TableCell>
-      <TableCell>
-        <Button
-          className="w-full"
-          size="sm"
-          variant="outline"
-          disabled={isArchiveClick}
-          onClick={handleArchiveInvoice}
-        >
-          Archiver
-        </Button>
-      </TableCell>
-      <TableCell>
-        <Button
-          className="w-full"
-          size="sm"
-          variant="outline"
-          onClick={onPayment}
-          disabled={isPayedClick}
-        >
-          Payer
-        </Button>
-      </TableCell>
     </TableRow>
   );
 }

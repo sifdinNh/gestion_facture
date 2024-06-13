@@ -10,7 +10,6 @@ export async function User() {
       <Link href={'/auth/sign-in'}><Button variant="outline">Sign In</Button></Link>
     );
   }
-  console.log(session);
   return (
     <div className="flex items-center gap-4">
       <form

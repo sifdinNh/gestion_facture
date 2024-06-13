@@ -1,19 +1,17 @@
-import { PaymentTable } from './payment-table';
+import { ArchiveFacturesTable } from './facture-table';
 
-export default async function IndexPage({
+export default function IndexPage({
   searchParams
 }: {
   searchParams: { q: string; offset: string };
 }) {
-  const offset = 1;
-  
+
   return (
     <main className="flex flex-1 flex-col p-4 md:p-6">
       <div className="flex items-center mb-8">
-        <h1 className="font-semibold text-lg md:text-2xl">Payments</h1>
+        <h1 className="font-semibold text-lg md:text-2xl">AArchived Factures</h1>
       </div>
-      <PaymentTable  />
+      <ArchiveFacturesTable/>
     </main>
   );
 }
-
