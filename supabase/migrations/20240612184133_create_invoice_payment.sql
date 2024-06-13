@@ -20,7 +20,7 @@ create table invoices (
     date_emission date not null,
     date_echeance date not null,
     is_archived boolean not null default false,
-    add is_paid boolean not null default false
+    is_paid boolean not null default false,
     receiver_name varchar(255) not null,
     receiver_address text not null,
     receiver_zip_code varchar(20) not null,

@@ -8,9 +8,9 @@ import { redirect } from 'next/navigation'
 
 
 export const metadata = {
-  title: 'Next.js App Router + NextAuth + Tailwind CSS',
+  title: 'IMACID',
   description:
-    'A user admin dashboard configured with Next.js, Postgres, NextAuth, Tailwind CSS, TypeScript, and Prettier.'
+    ''
 };
 
 export default async function RootLayout({
